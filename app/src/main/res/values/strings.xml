@@ -15,4 +15,5 @@
     <string name="print_canvas">Print Canvas</string>
     <string name="draw_canvas">Draw Canvas</string>
     <string name="back">back</string>
+    <string name="bitmap">Bitmap</string>
 </resources>

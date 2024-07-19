@@ -19,6 +19,13 @@
         android:text="@string/print_canvas" />
 
     <Button
+        android:id="@+id/btnBitmap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="00dp"
+        android:text="@string/bitmap" />
+
+    <Button
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
