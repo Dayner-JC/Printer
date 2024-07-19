@@ -6,7 +6,7 @@ import android.os.RemoteException
 import android.widget.Toast
 import com.sunmi.peripheral.printer.*
 
-class SunmiPrinterHelper {
+class PrinterHelper {
 
     var NoSunmiPrinter = 0x00000000
     var CheckSunmiPrinter = 0x00000001
@@ -164,6 +164,31 @@ class SunmiPrinterHelper {
         } catch (e: RemoteException) {
             handleRemoteException(e)
             ""
+        }
+    }
+
+    fun getPrinterStatus(): String {
+        return if (sunmiPrinterService == null) {
+            "Printer not connected"
+        } else {
+            try {
+                val res = sunmiPrinterService!!.updatePrinterState()
+                when (res) {
+                    1 -> "Printer is running"
+                    2 -> "Printer found but still initializing"
+                    3 -> "Printer hardware interface is abnormal and needs to be reprinted"
+                    4 -> "Printer is out of paper"
+                    5 -> "Printer is overheating"
+                    6 -> "Printer's cover is not closed"
+                    7 -> "Printer's cutter is abnormal"
+                    8 -> "Printer's cutter is normal"
+                    9 -> "Not found black mark paper"
+                    505 -> "Printer does not exist"
+                    else -> "Unknown printer status"
+                }
+            } catch (e: RemoteException) {e.printStackTrace()
+                "Error getting printer status"
+            }
         }
     }
 

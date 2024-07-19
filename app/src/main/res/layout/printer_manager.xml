@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_text_to_print"
+        android:importantForAutofill="no"
+        tools:ignore="TextFields" />
+
+    <Button
+        android:id="@+id/btnPrintText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/print_text" />
+
+    <EditText
+        android:id="@+id/textBarCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_barcode"
+        android:importantForAutofill="no"
+        tools:ignore="TextFields"
+        />
+
+    <Button
+        android:id="@+id/btnPrintBarcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/print_barcode" />
+
+    <EditText
+        android:id="@+id/textQRCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_qr"
+        android:importantForAutofill="no"
+        tools:ignore="TextFields"
+        />
+
+    <Button
+        android:id="@+id/btnPrintQR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/print_qr_code" />
+
+    <Button
+        android:id="@+id/btnCutPaper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cut_paper" />
+
+    <Button
+        android:id="@+id/btnShowStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_printer_status" />
+
+    <TextView
+        android:id="@+id/printerStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/printer_status" />
+
+    <Button
+        android:id="@+id/btnCanvas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:text="@string/draw_canvas" />
+
+</LinearLayout>

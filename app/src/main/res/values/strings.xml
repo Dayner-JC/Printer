@@ -3,4 +3,16 @@
     <string name="print">Print</string>
     <string name="image">Image</string>
     <string name="text">Text</string>
+    <string name="enter_text_to_print">Enter text to print</string>
+    <string name="print_text">Print Text</string>
+    <string name="print_barcode">Print Barcode</string>
+    <string name="cut_paper">Cut Paper</string>
+    <string name="print_qr_code">Print QR Code</string>
+    <string name="show_printer_status">Show Printer Status</string>
+    <string name="printer_status">Printer Status</string>
+    <string name="enter_qr">Enter QR</string>
+    <string name="enter_barcode">Enter BarCode</string>
+    <string name="print_canvas">Print Canvas</string>
+    <string name="draw_canvas">Draw Canvas</string>
+    <string name="back">back</string>
 </resources>
