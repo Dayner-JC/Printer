@@ -113,7 +113,7 @@ class PrinterHelper {
             return
         }
         try {
-            sunmiPrinterService!!.lineWrap(3, null)
+            sunmiPrinterService!!.lineWrap(6, null)
         } catch (e: RemoteException) {
             handleRemoteException(e)
         }
@@ -228,7 +228,6 @@ class PrinterHelper {
             handleRemoteException(e)
         }
     }
-
 
     fun feedPaper() {
         if (sunmiPrinterService == null) {

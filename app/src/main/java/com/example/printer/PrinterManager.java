@@ -45,16 +45,19 @@ public class PrinterManager extends AppCompatActivity {
     private void printText() {
         String text = textToPrint.getText().toString();
         printerHelper.printText(text, 24f, false, false, null);
+        printerHelper.feedPaper();
     }
 
     private void printBarcode() {
         String barcodeData = textBarCode.getText().toString();
         printerHelper.printBarCode(barcodeData, 8, 90, 2, 2);
+        printerHelper.feedPaper();
     }
 
     private void printQR() {
         String qrData = textQR.getText().toString();
         printerHelper.printQr(qrData, 8, 0);
+        printerHelper.feedPaper();
     }
 
     private void cutPaper() {

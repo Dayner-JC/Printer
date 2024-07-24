@@ -11,8 +11,10 @@ kotlin = "2.0.0"
 coreKtx = "1.13.1"
 printerlibrary = "1.0.18"
 roomCommon = "2.6.1"
+sunAndroidMail = "1.6.0"
 
 [libraries]
+android-activation = { module = "com.sun.mail:android-activation", version.ref = "sunAndroidMail" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -23,6 +25,7 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 printerlibrary = { module = "com.sunmi:printerlibrary", version.ref = "printerlibrary" }
 room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
+sun-android-mail = { module = "com.sun.mail:android-mail", version.ref = "sunAndroidMail" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
