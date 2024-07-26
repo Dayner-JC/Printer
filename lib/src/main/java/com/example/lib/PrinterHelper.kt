@@ -1,4 +1,4 @@
-package com.example.printer
+package com.example.lib
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -11,7 +11,6 @@ import com.sunmi.peripheral.printer.InnerPrinterManager
 import com.sunmi.peripheral.printer.InnerResultCallback
 import com.sunmi.peripheral.printer.SunmiPrinterService
 import com.sunmi.peripheral.printer.WoyouConsts
-
 
 class PrinterHelper {
 

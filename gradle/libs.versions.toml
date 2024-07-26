@@ -10,8 +10,11 @@ constraintlayout = "2.1.4"
 kotlin = "2.0.0"
 coreKtx = "1.13.1"
 printerlibrary = "1.0.18"
+printerlibraryVersion = "1.0.23"
 roomCommon = "2.6.1"
 sunAndroidMail = "1.6.0"
+firebaseInappmessaging = "21.0.0"
+jetbrainsKotlinJvm = "2.0.0"
 
 [libraries]
 android-activation = { module = "com.sun.mail:android-activation", version.ref = "sunAndroidMail" }
@@ -23,11 +26,14 @@ material = { group = "com.google.android.material", name = "material", version.r
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-printerlibrary = { module = "com.sunmi:printerlibrary", version.ref = "printerlibrary" }
+printerlibrary = { module = "com.sunmi:printerlibrary", version = "1.0.18" }
+printerlibrary-v1023 = { module = "com.sunmi:printerlibrary", version.ref = "printerlibraryVersion" }
 room-common = { group = "androidx.room", name = "room-common", version.ref = "roomCommon" }
 sun-android-mail = { module = "com.sun.mail:android-mail", version.ref = "sunAndroidMail" }
+firebase-inappmessaging = { group = "com.google.firebase", name = "firebase-inappmessaging", version.ref = "firebaseInappmessaging" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 
