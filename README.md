@@ -1,387 +1,670 @@
-**Printer**
+## Class/Function: PrinterHelper
 
-Properties*
+##### "First, make sure you have imported the `sunmiPrinterLibrary.jar`  lib into your project, then use the `PrinterHelper` class to interact with the lib."
 
-    NoSunmiPrinter: Indicates that no Sunmi printer was found.
-    CheckSunmiPrinter: Indicates that the Sunmi printer is being checked.
-    FoundSunmiPrinter: Indicates that a Sunmi printer was found.
-    LostSunmiPrinter: Indicates that the Sunmi printer was lost.
-    sunmiPrinter: Current state of the Sunmi printer.
-    sunmiPrinterService: Instance of the Sunmi printer service.
-    innerPrinterCallback: Callback to handle connection and disconnection of the Sunmi printer service.
+**Purpose:** 
+The `PrinterHelper` class provides various methods to interact with Sunmi printers. It 
+handles printer connection, sending print data, checking printer status, and performing 
+printer-specific actions like cutting paper and printing different types of content.
 
-Methods*
-initSunmiPrinterService
+## Init Service
 
+1-Including the Class: This likely means adding the necessary dependency to your project's build.gradle file. Refer to the library's documentation for the correct dependency information.
 
-fun initSunmiPrinterService(context: Context?)
+2-Instantiating the Class: The provided code snippet PrinterHelper printerHelper = PrinterHelper() creates a new instance of the PrinterHelper class. In Kotlin, you would typically use:
 
-Initializes the Sunmi printer service.
+```
+val printerHelper = PrinterHelper()
+```
+3-Initializing the Printing Service: The `initSunmiPrinterService(this)` method likely initializes the connection to the Sunmi printer. The this argument probably refers to the current Activity or Context.
 
-    Parameters:
-        context: Application context.
+```
+printerHelper.initSunmiPrinterService(this)
+```
 
-deInitSunmiPrinterService
+#### Additional Notes:
 
+Error Handling: It's crucial to add error handling to your code. The initSunmiPrinterService method might throw exceptions if the printer is not connected or there are other issues.
 
-fun deInitSunmiPrinterService(context: Context?)
+Permissions: Ensure you have the necessary permissions in your AndroidManifest.xml to interact with the printer.
+Background Tasks: If the printing process is long-running, consider using a background thread or WorkManager to avoid blocking the main thread.
 
-Deinitializes the Sunmi printer service.
+## Methods:
 
-    Parameters:
-        context: Application context.
+#### Method 1:
 
-sendRawData
+    fun initSunmiPrinterService(context: Context?)
 
+*Purpose: Initialize the Sunmi printer service and bind it to the provided context.
 
-fun sendRawData(data: ByteArray?)
+*Parameters:
 
-Sends raw data to the printer.
+    context: Context?: The context to which the printer service should be bound.
 
-    Parameters:
-        data: Data in byte array format to send to the printer.
+    Return: None
 
-cutpaper
+*Exceptions:
 
+    InnerPrinterException: Conditions under which this exception is raised.
 
-fun cutpaper()
+#### Method 2:
 
-Cuts the printer paper.
-initPrinter
+    fun deInitSunmiPrinterService(context: Context?)
 
+*Purpose: Unbind the Sunmi printer service from the provided context.
 
-fun initPrinter()
+*Parameters:
 
-Initializes the printer.
-print3Line
+    context: Context?: The context from which the printer service should be unbound.
 
+    Return: None
 
-fun print3Line()
+*Exceptions:
 
-Prints three blank lines.
-getPrinterSerialNo
+    InnerPrinterException: Conditions under which this exception is raised.
 
+#### Method 3:
 
-fun getPrinterSerialNo(): String?
+    private fun checkSunmiPrinterService(service: SunmiPrinterService)
 
-Gets the serial number of the printer.
+*Purpose: Check the Sunmi printer service to determine if a printer is available.
 
-    Returns:
-        Serial number of the printer or an empty string in case of an error.
+*Parameters:
 
-getDeviceModel
+    service: SunmiPrinterService: The printer service to be checked.
 
+    Return: None
 
-fun getDeviceModel(): String?
+*Exceptions:
 
-Gets the device model of the printer.
+    InnerPrinterException: Conditions under which this exception is raised.
 
-    Returns:
-        Device model or an empty string in case of an error.
+#### Method 4:
 
-getPrinterVersion
+    private fun handleRemoteException(e: RemoteException)
 
+*Purpose: Handle RemoteException when interacting with the Sunmi printer service.
 
-fun getPrinterVersion(): String?
+*Parameters:
 
-Gets the version of the printer.
+    e: RemoteException: The exception to be handled.
 
-    Returns:
-        Version of the printer or an empty string in case of an error.
+    Return: None
 
-getPrinterPaper
+*Exceptions:
 
+    None
 
-fun getPrinterPaper(): String?
+#### Method 5:
 
-Gets the paper size of the printer.
+    fun sendRawData(data: ByteArray?)
 
-    Returns:
-        Paper size ("58mm" or "80mm") or an empty string in case of an error.
+*Purpose: Send raw data to the printer for printing.
 
-getPrinterStatus
+*Parameters:
 
+    data: ByteArray?: The raw data to be sent to the printer.
 
-fun getPrinterStatus(): String
+    Return: None
 
-Gets the current status of the printer.
+*Exceptions:
 
-    Returns:
-        Printer status as a string.
+    RemoteException: Conditions under which this exception is raised.
 
-getPrinterHead
+#### Method 6:
 
+    fun cutpaper()
 
-fun getPrinterHead(callbcak: InnerResultCallback?)
+*Purpose: Cut the paper using the printer's cutter.
 
-Gets information about the printer head.
+*Parameters:
 
-    Parameters:
-        callbcak: Callback to handle the response.
+    None
+    
+    Return: None
 
-getPrinterDistance
+*Exceptions:
 
+    RemoteException: Conditions under which this exception is raised.
 
-fun getPrinterDistance(callback: InnerResultCallback?)
+#### Method 7:
 
-Gets the printed distance of the printer.
+    fun initPrinter()
 
-    Parameters:
-        callback: Callback to handle the response.
+*Purpose: Initialize the printer.
 
-setAlign
+*Parameters: 
 
+    None
+    
+    Return: None
 
-fun setAlign(align: Int)
+*Exceptions:
 
-Sets the alignment of the printed text.
+    RemoteException: Conditions under which this exception is raised.
 
-    Parameters:
-        align: Text alignment (0: left, 1: center, 2: right).
+#### Method 8:
 
-feedPaper
+    fun print3Line()
 
+*Purpose: Print three lines using the printer.
 
-fun feedPaper()
+*Parameters: 
 
-Feeds the printer paper.
-printText
+    None
+    
+    Return: None
 
+*Exceptions:
 
-fun printText(content: String?, size: Float, isBold: Boolean, isUnderLine: Boolean, typeface: String?)
+    RemoteException: Conditions under which this exception is raised.
 
-Prints text with style options.
+#### Method 9:
 
-    Parameters:
-        content: Text to print.
-        size: Text size.
-        isBold: Whether the text is bold.
-        isUnderLine: Whether the text is underlined.
-        typeface: Text typeface.
+    fun getPrinterSerialNo(): String?
 
-printBarCode
+*Purpose: Get the serial number of the printer.
 
+*Parameters: 
+    
+    None
+    
+    Return: The serial number of the printer as a String.
 
-fun printBarCode(data: String?, symbology: Int, height: Int, width: Int, textposition: Int)
+*Exceptions:
 
-Prints a barcode.
+    RemoteException: Conditions under which this exception is raised.
 
-    Parameters:
-        data: Barcode data.
-        symbology: Barcode symbology type.
-        height: Barcode height.
-        width: Barcode width.
-        textposition: Text position.
+#### Method 10:
 
-printQr
+    fun getDeviceModel(): String?
 
+*Purpose: Get the model of the printer.
 
-fun printQr(data: String?, modulesize: Int, errorlevel: Int)
+*Parameters: 
 
-Prints a QR code.
+    None
+    
+    Return: The model of the printer as a String.
 
-    Parameters:
-        data: QR code data.
-        modulesize: QR code module size.
-        errorlevel: QR code error correction level.
+*Exceptions:
 
-printTable
+    RemoteException: Conditions under which this exception is raised.
 
+#### Method 11:
 
-fun printTable(txts: Array<String?>?, width: IntArray?, align: IntArray?)
+    fun getPrinterVersion(): String?
 
-Prints a table.
+*Purpose: Get the version of the printer.
 
-    Parameters:
-        txts: Array of text strings for the columns.
-        width: Array of column widths.
-        align: Array of column alignments.
+*Parameters:     
+    
+    None
+    
+    Return: The version of the printer as a String.
 
-printBitmap
+*Exceptions:
 
+    RemoteException: Conditions under which this exception is raised.
 
-fun printBitmap(bitmap: Bitmap?, orientation: Int)
+#### Method 12:
 
-Prints a bitmap image.
+    fun getPrinterPaper(): String?
 
-    Parameters:
-        bitmap: Bitmap image to print.
-        orientation: Image orientation (0: normal, 1: rotated).
+*Purpose: Get the type of paper used in the printer.
 
-isBlackLabelMode
+*Parameters: 
 
+    None
+    
+    Return: The type of paper as a String.
 
-fun isBlackLabelMode(): Boolean
+*Exceptions:
 
-Checks if the printer is in black label mode.
+    RemoteException: Conditions under which this exception is raised.
 
-    Returns:
-        true if in black label mode, false otherwise.
+#### Method 13:
 
-isLabelMode
+    fun getPrinterStatus(): String
 
+*Purpose: Get the current status of the printer.
 
-fun isLabelMode(): Boolean
+*Parameters:
+    
+    None
+    
+    Return: The status of the printer as a String.
 
-Checks if the printer is in label mode.
+*Exceptions:
 
-    Returns:
-        true if in label mode, false otherwise.
+    RemoteException: Conditions under which this exception is raised.
 
-openCashBox
+#### Method 14:
 
+    fun getPrinterHead(callbcak: InnerResultCallback?)
 
-fun openCashBox()
+*Purpose: Get the printer head information.
 
-Opens the cash box connected to the printer.
-controlLcd
+*Parameters:
 
+    callback: InnerResultCallback?: The callback to receive the result.
+    
+    Return: None
 
-fun controlLcd(flag: Int)
+*Exceptions:
 
-Controls the printer's LCD screen.
+    RemoteException: Conditions under which this exception is raised.
 
-    Parameters:
-        flag: Command to control the LCD screen.
+#### Method 15:
 
-sendTextToLcd
+    fun getPrinterDistance(callback: InnerResultCallback?)
 
+*Purpose: Get the printed distance of the printer.
 
-fun sendTextToLcd()
+*Parameters:
 
-Sends text to the printer's LCD screen.
-sendTextsToLcd
+    callback: InnerResultCallback?: The callback to receive the result.
 
+    Return: None
 
-fun sendTextsToLcd()
+*Exceptions:
 
-Sends multiple lines of text to the printer's LCD screen.
-sendPicToLcd
+    RemoteException: Conditions under which this exception is raised.
 
+#### Method 16:
 
-fun sendPicToLcd(pic: Bitmap?)
+    fun setAlign(align: Int)
 
-Sends an image to the printer's LCD screen.
+*Purpose: Set the alignment for the printer.
 
-    Parameters:
-        pic: Image to send.
+*Parameters:
 
-showPrinterStatus
+    align: Int: The alignment to be set.
+    
+    Return: None
 
+*Exceptions:
 
-fun showPrinterStatus(context: Context?)
+    RemoteException: Conditions under which this exception is raised.
 
-Displays the printer status via a Toast message.
+#### Method 17:
 
-    Parameters:
-        context: Application context.
+    fun feedPaper()
 
-printOneLabel
+*Purpose: Feed paper using the printer.
 
+*Parameters:
 
-fun printOneLabel()
+    None
+    
+    Return: None
 
-Prints a single label.
-printMultiLabel
+*Exceptions:
 
+    RemoteException: Conditions under which this exception is raised.
 
-fun printMultiLabel(num: Int)
+#### Method 18:
 
-Prints multiple labels.
+    fun printText(content: String?, size: Float, isBold: Boolean, isUnderLine: Boolean, typeface: String?)
 
-    Parameters:
-        num: Number of labels to print.
+*Purpose: Print text with specified style and size.
 
-printLabelContent
+*Parameters:
 
+    content: String?: The text content to be printed.
+    size: Float: The size of the text.
+    isBold: Boolean: Whether the text should be bold.
+    isUnderLine: Boolean: Whether the text should be underlined.
+    typeface: String?: The typeface to be used.
 
-@Throws(RemoteException::class)
-private fun printLabelContent()
+    Return: None
 
-Prints the content of a label.
+*Exceptions:
 
-Example Usage**
+    RemoteException: Conditions under which this exception is raised.
 
-public class PrinterManager extends AppCompatActivity {
-    private static final int REQUEST_CODE_PICK_IMAGE =100;
-    private CustomDrawingView drawingView;
-    private PrinterHelper printerHelper;
-    private List<Bitmap> imagesToPrint = new ArrayList<>();
+#### Method 19:
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.canvas);
-        SystemBarsUtils.styleSystemBars(this, android.R.color.black);
+    fun printBarCode(data: String?, symbology: Int, height: Int, width: Int, textposition: Int)
 
-        drawingView = findViewById(R.id.drawingView);
-        Button btnPrintCanvas = findViewById(R.id.btnPrintCanvas);
-        Button btnBack = findViewById(R.id.btnBack);
-        Button btnBitmap = findViewById(R.id.btnBitmap);
+*Purpose: Print a barcode with specified parameters.
 
-        printerHelper = new PrinterHelper();
-        printerHelper.initSunmiPrinterService(this);
+*Parameters:
 
-        btnPrintCanvas.setOnClickListener(v -> {
-            Bitmap bitmap = drawingView.getBitmap();
-            printerHelper.printBitmap(bitmap, 0);
-        });
+    data: String?: The data to be encoded in the barcode.
+    symbology: Int: The barcode symbology.
+    height: Int: The height of the barcode.
+    width: Int: The width of the barcode.
+    textposition: Int: The position of the text.
 
-        btnBack.setOnClickListener(v -> {
-            Intent intent = new Intent(this, PrinterManager.class);
-            startActivity(intent);
-            finish();
-        });
+    Return: None
 
-        btnBitmap.setOnClickListener(v -> {
-            imagesToPrint.clear();
-            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true); // Permite seleccionar múltiples imágenes
-            startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE);
-        });
+*Exceptions:
+
+    RemoteException: Conditions under which this exception is raised.
+
+#### Method 20:
+
+    fun printQr(data: String?, modulesize: Int, errorlevel: Int)
+
+*Purpose: Print a QR code with specified parameters.
+
+*Parameters:
+
+    data: String?: The data to be encoded in the QR code.
+    modulesize: Int: The module size of the QR code.
+    errorlevel: Int: The error level of the QR code.
+
+    Return: None
+
+*Exceptions:
+
+    RemoteException: Conditions under which this exception is raised.
+
+#### Method 21:
+
+    fun printTable(txts: Array<String?>?, width: IntArray?, align: IntArray?)
+
+*Purpose: Print a table with specified text, width, and alignment.
+
+*Parameters:
+
+    txts: Array<String?>?: The text to be printed in each cell.
+    width: IntArray?: The width of each column.
+    align: IntArray?: The alignment of each column.
+
+    Return: None
+
+*Exceptions:
+
+    RemoteException: Conditions under which this exception is raised.
+
+#### Method 22:
+
+    fun printBitmap(bitmap: Bitmap?, orientation: Int)
+
+*Purpose: Print a bitmap image with specified orientation.
+
+*Parameters:
+
+    bitmap: Bitmap?: The bitmap to be printed.
+    orientation: Int: The orientation of the bitmap.
+
+    Return: None
+
+*Exceptions:
+
+    RemoteException: Conditions under which this exception is raised.
+
+#### Method 23:
+
+    fun isBlackLabelMode(): Boolean
+
+*Purpose: Check if the printer is in black label mode.
+
+*Parameters: 
+
+    None
+    
+    Return: Boolean indicating if the printer is in black label mode.
+
+*Exceptions:
+
+    RemoteException: Conditions under which this exception is raised.
+
+#### Method 24:
+
+    fun isLabelMode(): Boolean
+
+*Purpose: Check if the printer is in label mode.
+
+*Parameters: 
+
+    None
+
+    Return: Boolean indicating if the printer is in label mode.
+
+*Exceptions:
+
+    RemoteException: Conditions under which this exception is raised.
+
+#### Method 25:
+
+    fun openCashBox()
+
+*Purpose: Open the cash box connected to the printer.
+
+*Parameters:
+
+    None
+
+    Return: None
+
+*Exceptions:
+
+    RemoteException: Conditions under which this exception is raised.
+
+#### Method 26:
+
+    fun controlLcd(flag: Int)
+
+*Purpose: Control the LCD of the printer with specified flag.
+
+*Parameters:
+
+    flag: Int: The control flag for the LCD.
+
+    Return: None
+
+*Exceptions:
+
+    RemoteException: Conditions under which this exception is raised.
+
+#### Method 27:
+
+    fun sendTextToLcd()
+
+*Purpose: Send text to the LCD of the printer.
+
+*Parameters:
+
+    None
+
+    Return: None
+
+*Exceptions:
+
+    RemoteException: Conditions under which this exception is raised.
+
+#### Method 28:
+
+    fun sendTextsToLcd()
+
+*Purpose: Send multiple texts to the LCD of the printer.
+
+*Parameters:
+
+    None
+
+    Return: None
+
+*Exceptions:
+
+    RemoteException: Conditions under which this exception is raised.
+
+#### Method 29:
+
+    fun sendPicToLcd(pic: Bitmap?)
+
+*Purpose: Send a picture to the LCD of the printer.
+
+*Parameters:
+
+    pic: Bitmap?: The picture to be sent to the LCD.
+
+    Return: None
+
+*Exceptions:
+
+    RemoteException: Conditions under which this exception is raised.
+
+#### Method 30:
+
+    fun showPrinterStatus(context: Context?)
+
+*Purpose: Show the status of the printer as a toast message.
+
+*Parameters:
+
+    context: Context?: The context in which the toast message should be shown.
+
+    Return: None
+
+*Exceptions:
+
+    RemoteException: Conditions under which this exception is raised.
+
+#### Method 31:
+
+    fun printOneLabel()
+
+*Purpose: Print a single label.
+
+*Parameters:
+
+    None
+
+    Return: None
+
+*Exceptions:
+
+    RemoteException: Conditions under which this exception is raised.
+
+#### Method 32:
+
+    fun printMultiLabel(num: Int)
+
+*Purpose: Print multiple labels.
+
+*Parameters:
+
+    num: Int: The number of labels to be printed.
+
+    Return: None
+
+*Exceptions:
+
+    RemoteException: Conditions under which this exception is raised.
+
+#### Method 33:
+
+    @Throws(RemoteException::class)
+    private fun printLabelContent()
+
+*Purpose: Print the content of a label.
+
+*Parameters: 
+
+    None
+
+    Return: None
+
+*Exceptions:
+
+    RemoteException: Conditions under which this exception is raised.
+
+## Example Usage
+```
+class CanvasActivity : AppCompatActivity() {
+
+    private lateinit var drawingView: CustomDrawingView
+    private lateinit var printerHelper:PrinterHelper
+    private val imagesToPrint = mutableListOf<Bitmap>()
+
+    companion object {
+        private const val REQUEST_CODE_PICK_IMAGE = 100
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.canvas)
+        SystemBarsUtils.styleSystemBars(this, android.R.color.black)
+
+        drawingView = findViewById(R.id.drawingView)
+        val btnPrintCanvas = findViewById<Button>(R.id.btnPrintCanvas)
+        val btnBack = findViewById<Button>(R.id.btnBack)
+        val btnBitmap = findViewById<Button>(R.id.btnBitmap)
+
+        printerHelper = PrinterHelper()
+        printerHelper.initSunmiPrinterService(this)
+
+        btnPrintCanvas.setOnClickListener {
+            val bitmap = drawingView.getBitmap()
+            printerHelper.printBitmap(bitmap, 0)
+        }
+
+        btnBack.setOnClickListener {
+            startActivity(Intent(this, PrinterManager::class.java))
+            finish()
+        }
+
+        btnBitmap.setOnClickListener {
+            imagesToPrint.clear()
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+            startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == REQUEST_CODE_PICK_IMAGE && resultCode == RESULT_OK) {
-            if (data.getClipData() != null) {
-                ClipData clipData = data.getClipData();
-                for (int i = 0; i < clipData.getItemCount(); i++) {
-                    ClipData.Item item = clipData.getItemAt(i);
-                    Uri selectedImageUri = item.getUri();
-                    addImageToQueue(selectedImageUri);
+            data?.let {
+                if(it.clipData != null) {
+                    val clipData = it.clipData!!
+                    for (i in 0 until clipData.itemCount) {
+                        val item = clipData.getItemAt(i)
+                        val selectedImageUri = item.uri
+                        addImageToQueue(selectedImageUri)
+                    }
+                } else if (it.data != null) {
+                    val selectedImageUri = it.data!!
+                    addImageToQueue(selectedImageUri)
                 }
-            } else if (data.getData() != null) {
-                Uri selectedImageUri = data.getData();
-                addImageToQueue(selectedImageUri);
+                printImageQueue()
             }
-            printImageQueue();
         }
     }
 
-    private void addImageToQueue(Uri selectedImageUri) {
+    private fun addImageToQueue(selectedImageUri: Uri) {
         try {
-            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImageUri);
-            imagesToPrint.add(bitmap);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(this, "Failed to load image", Toast.LENGTH_SHORT).show();
+            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, selectedImageUri)
+            imagesToPrint.add(bitmap)
+        } catch (e: IOException) {
+            e.printStackTrace()
+            Toast.makeText(this, "Failed to load image", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private void printImageQueue() {
-        for (Bitmap bitmap : imagesToPrint) {
-            printerHelper.printBitmap(bitmap, 0);
+    private fun printImageQueue() {
+        imagesToPrint.forEach { bitmap ->
+            printerHelper.printBitmap(bitmap, 0)
         }
-        imagesToPrint.clear();
-        Toast.makeText(this, "Print queue completed", Toast.LENGTH_SHORT).show();
+        imagesToPrint.clear()
+        Toast.makeText(this, "Print queue completed", Toast.LENGTH_SHORT).show()
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        printerHelper.deInitSunmiPrinterService(this);
+    override fun onDestroy() {
+        super.onDestroy()
+        printerHelper.deInitSunmiPrinterService(this)
     }
 }
+```
+### Exception Handling:
+- Methods handling `RemoteException` catch the exception and pass it to the `handleRemoteException` method for processing.
+- `InnerPrinterException` is caught and logged.
+
+### Notes:
+- The class contains several `TODO` comments indicating areas where further processing or handling is required, particularly in the event of service disconnection or exception handling.
+- This class should be used with a valid context and proper error handling in a production environment to ensure smooth printer operations.
