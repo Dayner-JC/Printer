@@ -12,7 +12,6 @@ import com.sunmi.peripheral.printer.InnerResultCallback
 import com.sunmi.peripheral.printer.SunmiPrinterService
 import com.sunmi.peripheral.printer.WoyouConsts
 
-
 class PrinterHelper {
 
     var NoSunmiPrinter = 0x00000000
