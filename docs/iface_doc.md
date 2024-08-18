@@ -393,6 +393,23 @@ printerHelper.initSunmiPrinterService(this)
 
 #### Method 23:
 
+    fun printByteArray(imageBytes: ByteArray?, orientation: Int)
+
+*Purpose: Performs the same function as the `printBitmap()` method but receiving a ByteArray object
+
+*Parameters:
+
+    imageBytes: ByteArray?: The ByteArray to be printed.
+    orientation: Int: The orientation of the bitmap.
+
+    Return: None
+
+*Exceptions:
+
+    RemoteException: Conditions under which this exception is raised.
+
+#### Method 24:
+
     fun isBlackLabelMode(): Boolean
 
 *Purpose: Check if the printer is in black label mode.
@@ -407,7 +424,7 @@ printerHelper.initSunmiPrinterService(this)
 
     RemoteException: Conditions under which this exception is raised.
 
-#### Method 24:
+#### Method 25:
 
     fun isLabelMode(): Boolean
 
@@ -423,7 +440,7 @@ printerHelper.initSunmiPrinterService(this)
 
     RemoteException: Conditions under which this exception is raised.
 
-#### Method 25:
+#### Method 26:
 
     fun openCashBox()
 
@@ -439,7 +456,7 @@ printerHelper.initSunmiPrinterService(this)
 
     RemoteException: Conditions under which this exception is raised.
 
-#### Method 26:
+#### Method 27:
 
     fun controlLcd(flag: Int)
 
@@ -455,7 +472,7 @@ printerHelper.initSunmiPrinterService(this)
 
     RemoteException: Conditions under which this exception is raised.
 
-#### Method 27:
+#### Method 28:
 
     fun sendTextToLcd()
 
@@ -471,7 +488,7 @@ printerHelper.initSunmiPrinterService(this)
 
     RemoteException: Conditions under which this exception is raised.
 
-#### Method 28:
+#### Method 29:
 
     fun sendTextsToLcd()
 
@@ -487,7 +504,7 @@ printerHelper.initSunmiPrinterService(this)
 
     RemoteException: Conditions under which this exception is raised.
 
-#### Method 29:
+#### Method 30:
 
     fun sendPicToLcd(pic: Bitmap?)
 
@@ -503,7 +520,7 @@ printerHelper.initSunmiPrinterService(this)
 
     RemoteException: Conditions under which this exception is raised.
 
-#### Method 30:
+#### Method 31:
 
     fun showPrinterStatus(context: Context?)
 
@@ -519,7 +536,7 @@ printerHelper.initSunmiPrinterService(this)
 
     RemoteException: Conditions under which this exception is raised.
 
-#### Method 31:
+#### Method 32:
 
     fun printOneLabel()
 
@@ -535,7 +552,7 @@ printerHelper.initSunmiPrinterService(this)
 
     RemoteException: Conditions under which this exception is raised.
 
-#### Method 32:
+#### Method 33:
 
     fun printMultiLabel(num: Int)
 
@@ -551,7 +568,7 @@ printerHelper.initSunmiPrinterService(this)
 
     RemoteException: Conditions under which this exception is raised.
 
-#### Method 33:
+#### Method 34:
 
     @Throws(RemoteException::class)
     private fun printLabelContent()

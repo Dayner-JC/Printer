@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.printer"
+    namespace = "dev.godjango.sunmiPrinterLibraryPoC"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.printer"
+        applicationId = "dev.godjango.sunmiPrinterLibraryPoC"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

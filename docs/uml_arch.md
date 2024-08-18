@@ -32,6 +32,7 @@ class PrinterHelper {
   + printQr(String,Int, Int)
   + printTable(Array<String>, IntArray, IntArray)
   + printBitmap(Bitmap, Int)
+  + printByteArray(ByteArray, Int)
   + isBlackLabelMode(): Boolean
   + isLabelMode(): Boolean
   + openCashBox()
